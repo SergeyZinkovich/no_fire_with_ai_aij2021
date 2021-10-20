@@ -89,6 +89,8 @@ print(len(array_of_lats), len(array_of_lons))
 
 # 15 Cell
 
+# train = prepare_train.make_train('input/train_raw.csv', array_of_lons, array_of_lats, step, start_date='2018-01-01')
+# train.to_csv('input/train.csv')
 train = pd.read_csv('input/train.csv', parse_dates=['dt'])
 print(train.shape)
 train.head()
