@@ -13,7 +13,6 @@ from OSMPythonTools.nominatim import Nominatim
 from OSMPythonTools.overpass import overpassQueryBuilder, Overpass
 from sklearn.model_selection import train_test_split
 
-# модули из репозитория https://github.com/sberbank-ai/no_fire_with_ai_aij2021
 import helpers, preprocessing, features_generation, prepare_train
 from solution import FEATURES
 
@@ -46,7 +45,7 @@ ds[0].stl1[200].plot(cmap=plt.cm.coolwarm)
 ax = plt.axes(projection=ccrs.Robinson())
 # ax.coastlines(resolution='10m')
 plot = ds[1].d2m[119].plot(cmap=plt.cm.coolwarm, transform=ccrs.PlateCarree(), cbar_kwargs={'shrink': 0.6})
-plt.title('Soil temperature on 2018-04-29');
+plt.title('Soil temperature on 2018-04-29')
 
 # 8 Cell
 
@@ -109,6 +108,12 @@ print(sample_test.head())
 
 train, val, _, _ = train_test_split(train, train, test_size=0.25, random_state=41)
 print(train.shape, val.shape)
+
+# train.to_csv('input/train_splited.csv')
+# val.to_csv('input/val_splited.csv')
+
+train = pd.read_csv('input/train_splited.csv', index_col=0, parse_dates=['dt'])
+val = pd.read_csv('input/val_splited.csv', index_col=0, parse_dates=['dt'])
 
 # 19 Cell
 
@@ -181,6 +186,12 @@ val = features_generation.add_cat_date_features(val)
 
 train = features_generation.add_geo_features(train, cities_df)
 val = features_generation.add_geo_features(val, cities_df)
+
+# train.to_csv('input/prepared_train.csv')
+# val.to_csv('input/prepared_val.csv')
+
+train = pd.read_csv('input/prepared_train.csv', index_col=0, parse_dates=['dt'])
+val = pd.read_csv('input/prepared_val.csv', index_col=0, parse_dates=['dt'])
 
 # 31 Cell
 
