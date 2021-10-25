@@ -10,3 +10,4 @@ Cartopy==0.19.0.post1
 OSMPythonTools==0.3.2
 countryinfo==0.1.2
 turfpy==0.0.7
+pyarrow==4.0.1

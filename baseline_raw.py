@@ -90,7 +90,7 @@ print(len(array_of_lats), len(array_of_lons))
 
 # train = prepare_train.make_train('input/train_raw.csv', array_of_lons, array_of_lats, step, start_date='2018-01-01')
 # train.to_csv('input/train.csv')
-train = pd.read_csv('input/train.csv', parse_dates=['dt'])
+train = pd.read_csv('input/train.csv', index_col=0, parse_dates=['dt'])
 print(train.shape)
 train.head()
 
@@ -109,11 +109,11 @@ print(sample_test.head())
 train, val, _, _ = train_test_split(train, train, test_size=0.25, random_state=41)
 print(train.shape, val.shape)
 
-# train.to_csv('input/train_splited.csv')
-# val.to_csv('input/val_splited.csv')
+train.to_parquet('input/train_splited.parquet', index=False)
+val.to_parquet('input/val_splited.parquet', index=False)
 
-train = pd.read_csv('input/train_splited.csv', index_col=0, parse_dates=['dt'])
-val = pd.read_csv('input/val_splited.csv', index_col=0, parse_dates=['dt'])
+# train = pd.read_parquet('input/train_splited.parquet')
+# val = pd.read_parquet('input/val_splited.parquet')
 
 # 19 Cell
 
@@ -187,11 +187,11 @@ val = features_generation.add_cat_date_features(val)
 train = features_generation.add_geo_features(train, cities_df)
 val = features_generation.add_geo_features(val, cities_df)
 
-# train.to_csv('input/prepared_train.csv')
-# val.to_csv('input/prepared_val.csv')
+train.to_parquet('input/prepared_train.parquet', index=False)
+val.to_parquet('input/prepared_val.parquet', index=False)
 
-train = pd.read_csv('input/prepared_train.csv', index_col=0, parse_dates=['dt'])
-val = pd.read_csv('input/prepared_val.csv', index_col=0, parse_dates=['dt'])
+# train = pd.read_parquet('input/prepared_train.parquet')
+# val = pd.read_parquet('input/prepared_val.parquet')
 
 # 31 Cell
 

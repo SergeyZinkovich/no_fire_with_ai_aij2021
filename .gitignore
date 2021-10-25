@@ -2,6 +2,7 @@
 *.pkl
 *.geojson
 *.csv
+*.parquet
 
 *.vscode/
 __pycache__/
@@ -9,6 +10,7 @@ __pycache__/
 input/ERA5_data/
 additional_data/
 models/
+output
 .ipynb_checkpoints/
 catboost_info/
 .idea/*
