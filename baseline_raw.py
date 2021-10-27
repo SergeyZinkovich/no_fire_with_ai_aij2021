@@ -90,7 +90,7 @@ print(len(array_of_lats), len(array_of_lons))
 
 # train = prepare_train.make_train('input/train_raw.csv', array_of_lons, array_of_lats, step, start_date='2018-01-01')
 # train.to_csv('input/train.csv')
-train = pd.read_csv('input/train.csv', index_col=0, parse_dates=['dt'])
+train = pd.read_csv('input/train.csv', index_col=0, parse_dates=['dt'])  # Вставить index_column при большом датасете
 print(train.shape)
 train.head()
 
